@@ -1,0 +1,6 @@
+<?php
+
+// Path to Atlas class autoloader
+	require( '/home/ncoons/pandora/atlas/classes/autoloader.php' );
+
+?>

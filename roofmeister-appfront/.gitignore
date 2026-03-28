@@ -1,0 +1,15 @@
+## Apache2 folder
+/apache2/
+
+## Local config
+/config.ini
+
+## Locally-generated CSS
+/www/includes/css/legacyleadsusa.css
+
+## One-time use scripts
+/scripts
+
+## Atlas Autoloader
+/autoloader_atlas.php
+

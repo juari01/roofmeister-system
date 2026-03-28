@@ -1,0 +1,1 @@
+ALTER TABLE `file` DROP COLUMN `name`, DROP COLUMN `folder_id`

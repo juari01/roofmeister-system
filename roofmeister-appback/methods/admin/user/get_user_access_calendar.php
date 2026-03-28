@@ -1,0 +1,70 @@
+<?php namespace admin\user;
+
+	function get_user_access_calendar( $params ) {
+	/**
+	 * Retrieve a list of calendar options.
+	 * 
+	 * @param string  api_token - The token used to authenticate the JSON-RPC client.
+	 * @param string  hash      - The hash for the user accessing this method.
+	 *
+	 * @return array build_result()
+	 */
+
+	// Atlas class autoloader
+		require( \env::$paths['methods'] . '/../autoloader_atlas.php' );
+
+	// Load application configuration
+		$config = new \Atlas\Config( file_get_contents( \env::$paths['methods']. '/../config.ini' ));
+
+	// Application class autoloader
+		require( $config->get( 'paths\autoloader' ));
+
+	// Verify authorized API Token
+		if ( empty( $params['api_token'] )) {
+			return \JSORPC::build_result( FALSE, 'api_token_missing' );
+		}
+
+		if ( !\JSONRPC::check_api_token( $params['api_token'] )) {
+			return \JSONRPC::build_result( FALSE, "api_token_failure: {$params['api_token']}" );
+		}
+
+	// Verify hash
+		$user_id = \User::verify_hash( $params['hash'] );
+		if ( empty( $user_id )) {
+			return \JSONRPC::build_result( FALSE, 'invalid_hash' );
+		}
+
+		\JSONRPC::audit_log( $user_id, __NAMESPACE__ . '\\' . __FUNCTION__, json_encode( $params ));
+
+	// Verify admin access
+		if ( !\User::security_check( $user_id, 'admin' )) {
+			return \JSONRPC::build_result( FALSE, 'not_authorized' );
+		}
+
+		if ( $params['user_id'] ) {
+
+			$calendar_query = <<<SQL
+   SELECT `calendar`.calendar_id, `xref_calendar_user`.user_id,`xref_calendar_user`.calendar_id,`calendar`.name,`xref_calendar_user`.access
+     FROM `calendar`
+			LEFT JOIN `xref_calendar_user` 
+				   ON `xref_calendar_user`.calendar_id = `calendar`.calendar_id
+    WHERE `xref_calendar_user`.user_id = :user_id
+SQL;
+
+		}
+
+		$calendar_stmt = \DB::dbh()->prepare( $calendar_query );
+
+		if ( $params['user_id'] ) {
+			$calendar_stmt->bindParam( ':user_id', $params['user_id'], \PDO::PARAM_INT );
+		}
+
+		$calendar_stmt->execute();
+
+		$calendar_rows = $calendar_stmt->fetchAll( \PDO::FETCH_ASSOC );
+		
+
+		return \JSONRPC::build_result( TRUE, 'calendar', $calendar_rows );
+	}
+
+?>

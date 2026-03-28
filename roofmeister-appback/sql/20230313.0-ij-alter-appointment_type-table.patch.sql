@@ -1,0 +1,1 @@
+ALTER TABLE `appointment_type` ADD CONSTRAINT `appointment_type_ibfk_1` FOREIGN KEY (`calendar_id`) REFERENCES `calendar`(`calendar_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

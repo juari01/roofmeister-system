@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# LessCSS Generation
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)\.css$ /includes/css/less.php?file=$1 [L]
+

@@ -1,0 +1,1281 @@
+/* Zero out everything */
+
+.menu {
+	display: none;
+  }
+  .row:after {
+	content: "";
+	display: table;
+	clear: both;
+  }
+
+  .col-1 {
+	float: left;
+	margin-top: 6px;
+  }
+  .col-2 {
+	height: 30px;
+    float: right;
+    right: 13px;
+  }
+
+  .col-prev-cal, .col-next-cal {
+    float: left;
+	margin-top: 6px;
+	margin-bottom: 6px;
+  }
+  .col-monthyear-cal{
+	float: left;
+	margin: 6px 6px 6px 6px;
+  }
+
+  .table-container, .files_table_content {
+	overflow-x: auto;
+  }
+  
+@media (max-width: 600px) {
+	.login-frame {
+ 	width: 365px !important;
+
+		form {
+		margin: 0px !important;
+		}
+	}
+
+	.col-prev-cal {
+		width: 100%;
+		margin-top: 7px;
+	  }
+	.col-monthyear-cal {
+		width: 100%;
+		margin: 0px !important;
+	  }
+	.col-next-cal {
+		width: 100%;
+		margin-bottom: 6px !important;
+	  }
+
+	.col-1 {
+		width: 100%;
+		margin-top: 0;
+	}
+	.col-2 {
+		width: 100% !important;
+		padding-bottom: 5px
+	}
+	#search {
+		width: 95% !important;
+  	  	margin-top: 5px;
+	}
+
+}
+
+@media only screen and (min-width: 992px) { 
+	nav {
+		display: block !important;
+	} 
+}
+
+@media (max-width: 992px) {
+
+	.calendar-container {
+		width: 1000px;
+	}
+
+	nav {
+		display: none;
+		top: 64px !important;
+	} 
+
+	section#content {
+		left: 0px !important;
+	}
+
+	header { 
+		height: 65px !important;
+
+		.system-tray {
+			top: 15px !important;
+
+			div {
+				padding: 0 10px !important;
+			}
+		}
+		.logo {
+			top: 8px !important;
+		}
+		.menu {
+			display: block !important;
+		}
+	}
+	.select-projproperty-by-id {
+		margin-left: 0px !important;
+		margin-top: 10px !important;
+   }
+}
+
+	/*** No list-markers by default - 
+	 *** must redefine bullets w/ bg graphics
+	 ***/
+	ul {
+		list-style: none;
+	}
+
+	/*** Avoid browser default inconsistent heading, 
+	 *** font-sizes and pre/code
+	 ***/
+	body, h1, h2, h3, h4, h5, h6, pre, code, td {
+		font-size: 1em;
+	}
+
+	/*** Remove inconsistent (among browsers) - 
+	 *** default padding or margin 
+	 ***/
+	ul, li, h1, h2, h3, h4, h5, h6, pre, form, body, html, p, blockquote, fieldset,
+		input, label, div, dd, dt, dl, table, tr, td, img, hr {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	/*** Prevent blue linked image borders
+	 ***/
+	a img,:link img,:visited img, fieldset {
+		border: none;
+	}
+
+/* Miscellaneous */
+	.error {
+		color: #f00;
+	}
+
+/* Begin site CSS */
+	html, body {
+		font-family: arial;
+		font-size:   0;
+		height:      100%;
+		overflow-y: hidden;
+	}
+
+	section, header {
+		font-size: 13px;
+	}
+
+	header {
+		background: #00407C;
+		color:      #fff;
+		height:     80px;
+		position:   relative;
+
+		.logo {
+			left:     76px;
+			position: absolute;
+			top:      16px;
+		}
+
+		.system-tray {
+			top:      24px;
+			position: absolute;
+			right:    10px;
+
+			div {
+				display: inline-block;
+				padding: 0 20px;
+			}
+		}
+	}
+
+// All main navigation
+	nav {
+		background: #00407c;
+		bottom:     0;
+		position:   absolute;
+		top:		80px;
+		width:      200px;
+		z-index:    1;
+
+	// First level list of items
+		&>ul {
+			margin-top: 1px;
+
+		// First level items
+			&>li {
+				color:       #fff;
+				height:      50px;
+				white-space: nowrap;
+
+			// First level items on hover to show next level
+				&.hover:hover>ul {
+					opacity:    1;
+					visibility: visible;
+				}
+
+			// All divs within all items
+				div {
+					box-sizing: border-box;
+					font-size:  14px;
+
+				// div.label within all items
+					&.label {
+						cursor:      default;
+						height:      50px;
+						line-height: 50px;
+						position:    relative;
+						text-align:  right;
+					}
+				}
+
+			// div.label within first-level items
+				&>div {
+					display: inline-block;
+
+				// div.icon within first-level item
+					&.icon {
+						width: 64px;
+					}
+
+				// div.label within first-level item
+					&.label {
+						padding:     0 20px;
+						white-space: nowrap;
+						width:       ~"calc( 100% - 64px )";
+					}
+				}
+
+			// All second level and deeper list of items
+				ul {
+					left:       200px;
+					opacity:    0;
+					position:   absolute;
+					top:		0;
+					width:      160px;
+					transition: visbility 0s, opacity 300ms ease;
+					visibility: hidden;
+
+				// All second level and deeper items
+					&>li {
+						color:       #fff;
+						font-weight: normal;
+						line-height: 20px;
+
+						&:hover {
+							color: #fff;
+						}
+
+						&:hover ul {
+							opacity:    1;
+							visibility: visible;
+						}
+
+						&>div {
+
+						// div.icon within all items after the first level
+							&.icon {
+								display: none;
+							}
+
+							&.label {
+								background:  rgba(0, 64, 124, 0.8);
+								display:     block;
+								height:      50px;
+								line-height: 50px;
+								padding:     0 10px;
+								width:       100%;
+							}
+						}
+
+						&>ul {
+							left: 160px;
+						}
+					}
+				}
+			}
+
+		// All div.label in any item
+			li div.label {
+				z-index: 10;
+			}
+
+		// All div.label in any item on hover
+			li div.label:hover {
+				background: rgba(0, 64, 124, 0.9);
+			}
+		}
+
+	// All lists of items
+		ul {
+			border-left: 1px solid #fff;
+			position:    relative;
+
+			&:first-child {
+				border: 0;
+			}
+
+		// All items in every list
+			li {
+				position: relative;
+			}
+		}
+	}
+
+	section#content {
+		bottom:     0;
+		font-size:  14px;
+		left:       200px;
+		overflow-y: auto;
+		padding:    10px;
+		position:   absolute;
+		right:      0;
+		top:		80px;
+		z-index:    0;
+	}
+
+/* Login */
+	#login {
+		background: #fff;
+		height:     100%;
+		margin-top: 50px;
+		// overflow:   auto;
+		width:      100%;
+
+		.login-frame {
+			margin: 0 auto;
+			width:  600px;
+			text-align: center;
+
+			div.logo, div.title, div.bestway {
+				padding:    10px 0;
+				text-align: center;
+			}
+
+			form {
+				margin: 0 150px;
+			}
+
+			div.input {
+				padding-bottom: 10px;
+
+				span {
+					color:   #fff;
+					display: inline-block;
+				}
+			}
+
+			div.input.text, div.input.password {
+
+				span {
+
+					&.label {
+						font-size:     13px;
+						line-height:   36px;
+						padding-right: 10px;
+						text-align:    right;
+						width:         60px;
+					}
+
+					&.input {
+
+						input {
+							background:    #f3f6f7;
+							border:        0;
+							border-top:    1px solid #eeeff1;
+							border-radius: 5px;
+							color:         #000;
+							font-size:     16px;
+							height:        38px;
+							padding:       5px;
+							width:         290px;
+						}
+					}
+				}
+			}
+
+			div.input.button {
+
+				input {
+					background:    #40a6c2;
+					border:        0;
+					border-radius: 5px;
+					color:         #fff;
+					font-size:     16px;
+					font-weight:   normal;
+					height:        48px;
+					width:         300px;
+				}
+			}
+
+			div.errors {
+				font-size:   12px;
+				color:       #f00;
+				font-weight: bold;
+				height:      30px;
+				line-height: 30px;
+			}
+		}
+	}
+
+/* AJAX Spinner */
+	#ajax-spinner-background {
+		background: rgba(255, 255, 255, 0.4);
+	}
+
+	#ajax-spinner {
+		background: #fff;
+		border:     1px solid #aaa;
+		box-shadow: 0 0 20px #777;
+		padding:    5px 15px;
+	}
+
+/* Form Elements */
+	input[type=text], input[type=password], input[type=date], input[type=number], select, textarea {
+		height: 28px;
+	}
+
+	input[type=text], input[type=password], input[type=date], input[type=number], select {
+		background: #fff;
+		border: 1px solid #e0d5c6;
+
+		&:focus {
+			border: 1px solid #bbb;
+			box-shadow: 0 0 5px #bbb;
+		}
+	}
+
+	textarea {
+		height: 100px;
+	}
+
+	input[type=button], input[type=submit] {
+		background: #002858;
+		border:     1px solid rgba(255, 255, 255, 0.5);
+		color:      #fff;
+		height:     30px;
+		padding:    0px 20px;
+	}
+
+/* Tables */
+	table {
+		border-collapse: collapse;
+		border-spacing:  0;
+		margin:		  10px 0;
+		width:		   100%;
+
+		thead, tfoot {
+			background: #efefef;
+		}
+
+		th {
+
+			&.order-asc:before {
+				content: "▼";
+			}
+
+			&.order-desc:before {
+				content: "▲";
+			}
+		}
+
+		tr:nth-child(2n+3) {
+			background: #fff;
+		}
+
+		tr:nth-child(even) {
+			background: #f8f8f8;
+		}
+
+		tbody tr:hover {
+			background: #efefef;
+		}
+
+		th {
+			text-align: left;
+		}
+
+		th, td {
+			border:  1px solid #d7d8da;
+			cursor:  default;
+			padding: 5px;
+		}
+	}
+
+/* Popup */
+	.popup {
+		background: #fff;
+		border:     1px solid #d7d8da;
+		font-size:  13px;
+		position:   relative;
+
+		.container {
+			left:       0;
+			padding:    10px;
+			position:   absolute;
+			top:        20px;
+			width:      100%;
+			z-index:    3;
+			box-sizing: border-box;
+			height:     90%;
+
+			.half-box {
+				float: left;
+				width: 50%;
+			}
+
+			.full-box {
+				float: left;
+				clear: both;
+				width: ~"calc( 100% - 20px )";
+				padding-top: 10px;
+			}
+
+			div {
+				&.input {
+					display:       inline-block;
+					margin-bottom: 10px;
+
+					span {
+						display: inline-block;
+
+						&.label {
+							text-align:     right;
+							width:          120px;
+							vertical-align: top;
+						}
+					}
+				}
+			}
+
+			.timeout-message, .timeout-button {
+				margin:     10px 0;
+				text-align: center;
+			}
+
+			div.chosen {
+				display: inline;
+			}
+		}
+
+		.close {
+			background: url('/images/close_x.png');
+			height:   11px;
+			position: absolute;
+			right:    5px;
+			top:      4px;
+			width:    11px;
+			z-index:  2;
+		}
+
+		.title-bar {
+			background:  #21304d;
+			color:       #4d97dc;
+			cursor:      default;
+			font-weight: bold;
+			height:      20px;
+			line-height: 20px;
+			position:    absolute;
+			text-align:  center;
+			top:         0;
+			width:       100%;
+			z-index:     1;
+		}
+
+		.height-200px {
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				height: 200px;
+			}
+		}
+
+		.height-300px {
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				height: 300px;
+			}
+		}
+	}
+
+	.form, .popup .container {
+
+		ul.form-wrapper {
+			font-size: 0;
+
+			&>li {
+				display:   inline-block;
+				font-size: 13px;
+
+				&>span {
+					border-right: 1px solid #c1c1c1;
+					border-top:   1px solid #c1c1c1;
+					cursor:       default;
+					display:      inline-block;
+					font-weight:  bold;
+					height:       40px;
+					line-height:  40px;
+					padding:      0 10px;
+					position:     relative;
+					top:          1px;
+					z-index:      1;
+				}
+
+				&:first-child>span {
+					border-left: 1px solid #c1c1c1;
+				}
+
+				&:hover {
+					background: #1a1d3d;
+					color:      #fff;
+				}
+
+				&.active {
+					background: #eee;
+					color:      #000;
+
+					&>span {
+						border-bottom: 1px solid #fff;
+					}
+				}
+			}
+		}
+
+		div.section {
+			border:  1px solid #c1c1c1;
+			display: none;
+			padding: 10px;
+			z-index: 0;
+
+			&.active {
+				display: block;
+			}
+		}
+
+		.elements {
+			border:        1px solid #c1c1c1;
+			margin-bottom: 10px;
+			padding:       10px;
+			overflow-x: auto;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		div.input {
+			display:      inline-block;
+			margin-right: 10px;
+
+			span {
+				display: inline-block;
+
+				&.label {
+					font-weight:    bold;
+					padding-bottom: 1px;
+				}
+
+				&.tooltip {
+					display:      inline-block;
+					padding-left: 5px;
+					position:     relative;
+
+					.tooltip-container {
+						bottom:   15px;
+						display:  none;
+						left:     15px;
+						position: absolute;
+						width:    300px;
+						z-index:  1000;
+					}
+
+					.text {
+						background:  #def;
+						border:      1px solid #cdf;
+						box-shadow:  0 0 5px #000;
+						font-weight: normal;
+						padding:     2px;
+					}
+
+					&:hover .tooltip-container {
+						display: block;
+					}
+				}
+			}
+		}
+
+		div.vertical-checkboxes {
+			span.input {
+				display: block;
+
+				span.check {
+					display: block;
+				}
+			}
+		}
+
+		div.checkbox {
+
+			span.input {
+				font-weight: bold;
+				line-height: 30px;
+				display:     block;
+
+				span.check {
+					display: block;
+				}
+
+				input {
+					margin-right:   2px;
+					margin-left:    5px;
+					vertical-align: -2px;
+				}
+			}
+		}
+
+		div.multicheck {
+			max-height: 150px;
+
+			span.input {
+				border:     1px solid #c1c1c1;
+				display:    block;
+				padding:    5px;
+				overflow-y: scroll;
+				width:      100%;
+
+				input {
+					margin-bottom:  2px;
+					margin-right:   2px;
+					vertical-align: top;
+				}
+			}
+		}
+
+		div.select {
+			position: relative;
+			//top: -4px; -- I noticed this makes it too high up, not sure if there was a specific reason for it or not.
+
+			span.label {
+			}
+		}
+
+		h2 {
+			background: #f7f7f7;
+			background: -moz-linear-gradient(top,  #f7f7f7 0%, #ddd 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f7f7f7), color-stop(100%,#ddd));
+			background: -webkit-linear-gradient(top,  #f7f7f7 0%,#ddd 100%);
+			background: -o-linear-gradient(top,  #f7f7f7 0%,#ddd 100%);
+			background: -ms-linear-gradient(top,  #f7f7f7 0%,#ddd 100%);
+			background: linear-gradient(to bottom,  #f7f7f7 0%,#ddd 100%);
+			filter:     progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#ddd',GradientType=0 );
+
+			border:        1px solid #c1c1c1;
+			border-bottom: 0;
+			color:         #45484d;
+			height:        40px;
+			line-height:   40px;
+			padding-left:  10px;
+			position:      relative;
+
+			span {
+				display:     block;
+				font-weight: normal;
+				position:    absolute;
+				right:       10px;
+				top:         0;
+			}
+		}
+
+		hr {
+			background: #c1c1c1;
+			border:     0;
+			height:     1px;
+			margin:     10px 0;
+
+			&.linebreak {
+				height: 0;
+			}
+
+			&.separator {
+				background-color: #ccc;
+				height:           1px;
+			}
+		}
+
+		div.input span.white {
+			textarea {
+				&:read-only {
+					color:            #000;
+					background-color: #fff;
+					border:           1px solid #e0d5c6;
+					box-shadow:       none;
+				}
+
+				&:-moz-read-only {
+					color:            #000;
+					background-color: #fff;
+					border:           1px solid #e0d5c6;
+					box-shadow:       none;
+				}
+			}
+		}
+
+	   div.white {
+			textarea {
+				&:read-only {
+					color:            #000;
+					background-color: #fff;
+					border:           1px solid #e0d5c6;
+					box-shadow:       none;
+				}
+
+				&:-moz-read-only {
+					color:            #000;
+					background-color: #fff;
+					border:           1px solid #e0d5c6;
+					box-shadow:       none;
+				}
+			}
+		}
+
+		textarea {
+			&:read-only {
+				color:            grey;
+				background-color: #f0f0f0;
+				border:           1px solid #e0d5c6;
+				box-shadow:       none;
+			}
+
+			&:-moz-read-only {
+				color:            grey;
+				background-color: #f0f0f0;
+				border:           1px solid #e0d5c6;
+				box-shadow:       none;
+			}
+		}
+
+	   input[type=text], input[type=password], select, textarea, input[type=number] {
+			background: #fff;
+			border:     1px solid #e0d5c6;
+
+			&:focus {
+				border:     1px solid #bbb;
+				box-shadow: 0 0 5px #bbb;
+			}
+		}
+
+		input[type=text], input[type=password], select, input[type=number] {
+			height: 28px;
+		}
+
+		textarea {
+			height: 100px;
+		}
+
+		.width-30px {
+			width:     30px !important;
+			min-width: 30px !important;
+
+			input[type=password], input[type=text], select, textarea, input[type=number], input[type=button] {
+				width:     30px !important;
+				min-width: 30px !important;
+			}
+		}
+
+		.width-50px {
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 50px;
+			}
+		}
+		.width-100px {
+			width: 100px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 100px;
+			}
+		}
+
+		.width-120px {
+			width: 120px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 120px;
+			}
+		}
+
+		.width-150px {
+			width: 150px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 150px;
+			}
+		}
+
+		.width-200px {
+			width: 200px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 200px;
+			}
+		}
+
+		.min-width-200px {
+			min-width: 200px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				min-width: 200px;
+			}
+		}
+
+		.width-250px {
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 250px;
+			}
+		}
+
+		.width-300px {
+			width: 300px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 300px !important;
+			}
+		}
+
+		.width-400px {
+			width: 400px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 400px;
+			}
+		}
+
+		.width-500px {
+			width: 500px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 500px;
+			}
+		}
+
+		.width-600px {
+			width:600px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 600px;
+			}
+		}
+
+		.width-700px {
+			width:700px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 700px;
+			}
+		}
+
+		.width-800px {
+			width: 800px;
+
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				width: 800px;
+			}
+		}
+
+		.height-200px {
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				height: 200px;
+			}
+		}
+
+		.height-300px {
+			input[type=password], input[type=text], select, textarea, input[type=number] {
+				height: 300px;
+			}
+		}
+	}
+
+	.button-header {
+		display:       inline-flex;
+		margin-bottom: 10px;
+	}
+
+	span.page_nav {
+		margin-top: 5px;
+		margin-left: 10px;
+	}
+
+	span.page_nav .nav-link{
+		color: blue;
+		text-decoration: underline;
+		cursor: pointer; 
+		font-size: 12px;
+	}
+
+	#search {
+		height: 30px;
+		width: 340px;
+		position: absolute;
+		right: 13px;
+		border: 1px solid #ababab;
+	}
+
+	.select-projproperty-by-id {
+		 margin-left: 20px;
+	}
+
+	.calendar-container{
+		overflow-x: auto;
+	}
+
+	div.calendar {
+		height: calc(100% - 40px);
+		position: relative;
+	  }
+	div.calendar #appointment-view {
+	background: #fff;
+	border: 1px solid #d7d8da;
+	border-radius: 10px;
+	box-shadow: 0 0 20px #bbb;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-size: 13px;
+	padding: 10px 20px;
+	position: absolute;
+	width: 400px;
+	z-index: 100;
+	}
+	div.calendar #appointment-view h2 {
+	font-size: 18px;
+	padding-bottom: 10px;
+	}
+	div.calendar #appointment-view h3 {
+	font-size: 13px;
+	font-weight: normal;
+	padding-bottom: 5px;
+	}
+	div.calendar #appointment-view div.details {
+	padding-bottom: 10px;
+	}
+	div.calendar #appointment-view div.details span {
+	display: inline-block;
+	vertical-align: top;
+	}
+	div.calendar #appointment-view div.details span:nth-child(odd) {
+	font-weight: bold;
+	padding-right: 5px;
+	text-align: right;
+	width: 70px;
+	}
+	div.calendar #appointment-view div.close {
+	cursor: default;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	}
+	div.calendar div.head {
+	background: #efefef;
+	border: 1px solid #d7d8da;
+	font-size: 0;
+	height: 25px;
+	}
+	div.calendar div.head>div {
+	border-right: 1px solid #d7d8da;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	vertical-align: top;
+	}
+	div.calendar div.head>div.day-label {
+	width: 13.4%;
+	}
+	div.calendar div.head>div.day-label:last-child {
+	border-right: 0;
+	}
+	div.calendar div.head>div.time-label {
+	width: 5%;
+	}
+	div.calendar div.body {
+	border: 1px solid #d7d8da;
+	border-top: 0;
+	font-size: 0;
+	// height: calc(100%);
+	overflow-y: auto;
+	}
+	div.calendar div.body .time-marker {
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ccc;
+	color: #888;
+	height: 25px;
+	left: 0;
+	position: absolute;
+	text-align: right;
+	width: 100%;
+	}
+	div.calendar div.body .time-marker:first-child {
+	border-top: 0;
+	}
+	div.calendar div.body .time-label {
+	border-right: 1px solid #d7d8da;
+	display: inline-block;
+	height: 1220px;
+	font-size: 13px;
+	overflow: hidden;
+	position: relative;
+	vertical-align: top;
+	width: 5%;
+	}
+	div.calendar div.body .day-container {
+	border-right: 1px solid #d7d8da;
+	display: inline-block;
+	height: 1220px;
+	font-size: 13px;
+	overflow: hidden;
+	vertical-align: top;
+	width: 13.4%;
+	}
+	div.calendar div.body .day-container .day {
+	cursor: default;
+	position: relative;
+	}
+	div.calendar div.body .day-container .day .appointment {
+	border: 1px solid rgba(0,0,0,0.5);
+	box-shadow: 0 0 0 2px #fff;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	cursor: default;
+	font-size: 12px;
+	overflow: hidden;
+	padding: 2px;
+	position: absolute;
+	}
+	div.calendar div.body .day-container .day .corner-date {
+	background: #ddd;
+	font-weight: bold;
+	padding: 2px 5px;
+	position: absolute;
+	}
+	div.calendar h1 {
+	font-size: 18px;
+	display: inline-block;
+	text-align: center;
+	}
+	div.calendar input[type=button] {
+	display: inline-block;
+	min-width: 80px;
+	padding-left: 0;
+	}
+
+	
+/* Context Menu */
+#context-menu {
+	cursor: default;
+	font-size: 13px;
+	z-index: 2;
+
+	ul {
+		background: #21304d;
+		border: 1px solid #1a1d3d;
+
+		li {
+			border-bottom: 1px solid #adafb1;
+			border-top: 1px solid #e0e2e4;
+			color: #fff;
+			line-height: 20px;
+			padding: 3px;
+			width: 150px;
+
+			&:hover {
+				background: #1a1d3d;
+				color: #fff;
+			}
+
+			&:first-child {
+				border-top: 0;
+			}
+
+			&:last-child {
+				border: 0;
+			}
+		}
+	}
+}
+
+
+	#file-context-menu {
+		background: #d1d4d6;
+		border: 1px solid #adafb1;
+		cursor: default;
+		font-size: 13px;
+		width: 150px;
+		
+
+		ul {
+
+			li {
+				color: #45484d;
+				padding: 5px;
+
+				&:hover {
+					background: #1a1d3d;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+/* Folder List */
+	ul.folder-list {
+		background: url('/images/icon_folder-small.png') no-repeat;
+		cursor: default;
+		padding-left: 20px;
+
+		li {
+			display: inline-block;
+		}
+	}
+
+	#folder_breadcrumbs {
+	margin-top: 20px;
+	}
+
+	ul.breadcrumb {
+		padding: 10px 16px;
+		list-style: none;
+		background-color: #eee;
+	  }
+	  ul.breadcrumb li {
+		display: inline;
+		font-size: 13px;
+	  }
+	  ul.breadcrumb li+li:before {
+		padding: 8px;
+		color: black;
+		content: "/\00a0";
+	  }
+	  ul.breadcrumb li a {
+		color: #0275d8;
+		text-decoration: none;
+		cursor: pointer;
+	  }
+	  ul.breadcrumb li a:hover {
+		color: #01447e;
+		text-decoration: underline;
+	  }
+
+
+	.popup .container {
+	left: 0;
+	padding: 10px;
+	position: absolute;
+	top: 20px;
+	width: 100%;
+	z-index: 3;
+	box-sizing: border-box;
+	height: 90%;
+	text-align: center
+	}
+	.popup .container .half-box {
+	float: left;
+	width: 50%;
+	}
+
+	
+
+		

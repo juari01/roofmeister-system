@@ -1,0 +1,1 @@
+ALTER TABLE `appointment_type` ADD `color` VARCHAR(128) NOT NULL AFTER `name`;

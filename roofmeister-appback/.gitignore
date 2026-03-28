@@ -1,0 +1,17 @@
+## Apache2 folder
+/apache2/
+
+## Local config
+/config.ini
+
+## One-time use scripts
+/scripts
+
+## Atlas Autoloader
+/autoloader_atlas.php
+
+## Audit Logs
+/audit_logs
+
+## File storage
+/files

@@ -1,0 +1,1 @@
+ALTER TABLE `appointment_type` ADD `calendar_id` INT(10) UNSIGNED NOT NULL AFTER `type_id`;

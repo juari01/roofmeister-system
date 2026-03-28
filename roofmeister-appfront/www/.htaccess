@@ -1,0 +1,14 @@
+php_value max_input_vars 6000
+php_flag register_globals off
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^get-image/([0-9]+)/([0-9]+)/([0-9]+) /includes/scripts/image.php?file_id=$1&width=$2&height=$3 [L]
+RewriteRule ^get-file/([0-9]+) /includes/scripts/file.php?file_id=$1 [L]
+RewriteRule ^download-file/([0-9]+) /includes/scripts/download_file.php?file_id=$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php?p=%{REQUEST_URI} [L,QSA]
+

@@ -1,0 +1,18 @@
+; Configuration file
+
+[db]
+type=mysql
+host=localhost
+port=3306
+name=legacyleaaadsusaa
+user=legacyleadaasusaa
+pass=legacyleadss-passwordd
+
+[paths]
+autoloader=/home/ncoons/pandora/legacyleadsusa/appback/autoloader_app.php
+audit_log=/home/ncoons/pandora/legacyleadsusa/appback/audit_logs
+
+[jsonrpc]
+key=7cdd4677-c5d9-4a17-ae00-fcf33e9fsdsd
+pass=eelkZywdeodsbusd
+

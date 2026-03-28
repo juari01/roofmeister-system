@@ -1,0 +1,11 @@
+; Configuration file
+
+[paths]
+
+[jsonrpc]
+client=/home/ncoons/pandora/jsonrpc-3.0/www/client/php/jsonrpc.php
+
+main[server]=jsonrpc.workspacesample.local
+main[key]=asdd4677-c5ds-4a17-ae00-fcf33e9fe90f
+main[pass]=eelksdfddeodFbuqJ
+
