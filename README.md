@@ -20,6 +20,8 @@ Built using PHP, MySQL, and JSON-RPC architecture, the system focuses on modular
 roofmeister-system/
 ├── roofmeister-appback   # Backend logic (API, business rules, DB handling)
 ├── roofmeister-appfront  # Application interface and modules
+├── screenshot            # Project screenshots
+└── README.md
 
 ---
 
